@@ -1,4 +1,3 @@
-
 # Procedural
 datos = []
 with open('iris.data') as archivo:

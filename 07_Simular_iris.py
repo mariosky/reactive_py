@@ -1,6 +1,13 @@
 
-# Reactive
+# Reactive Simulation
+
 from rx import Observable
+
+
+def sim(valor):
+    time.sleep(random.choice([0.3,0.5,1]))
+    return valor
+
 
 
 def read_iris(ruta='iris.data'):
@@ -12,9 +19,6 @@ def read_iris(ruta='iris.data'):
 
 
 read_iris().subscribe(lambda linea : print(list(linea)))
-
-
-
 
 
 
