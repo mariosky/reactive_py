@@ -1,3 +1,8 @@
+# From:
+# Reactive Programming in Python
+# Rudolf Olah
+
+
 import tornado.ioloop
 from tornado.web import RequestHandler, Application
 from tornado.websocket import WebSocketHandler

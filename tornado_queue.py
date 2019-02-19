@@ -10,7 +10,7 @@ async def consumer():
     async for item in q:
         try:
             print('Doing work on %s' % item)
-            await gen.sleep(0.01)
+            await gen.sleep(1)
         finally:
             q.task_done()
 

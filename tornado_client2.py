@@ -1,4 +1,8 @@
-import asyncio
+# From:
+# Reactive Programming in Python
+# Rudolf Olah
+
+
 import datetime
 from random import choice
 

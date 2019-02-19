@@ -1,3 +1,7 @@
+# From:
+# Reactive Programming in Python
+# Rudolf Olah
+
 
 from tornado.ioloop import IOLoop
 from rx.concurrency import IOLoopScheduler
