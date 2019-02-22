@@ -21,5 +21,5 @@ Observable.from_("A,B,C,D,D,E,F,G,H".split(','))\
     .subscribe(AA.on_next)
 
 
-#for s in "A,B,C,D,D,E,F,G,H":
-#    AA.on_next(s)
+for s in "A,B,C,D,D,E,F,G,H":
+    AA.on_next(s)

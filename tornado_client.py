@@ -22,7 +22,6 @@ class Client:
         self.messages = Subject()
 
     def connect(self):
-
         def on_message_callback(message):
             self.messages.on_next(message)
 

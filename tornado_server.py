@@ -44,7 +44,7 @@ class Server:
 def make_app():
     routes = [
         (r"/", MainHandler),
-        (r'/exchenage',ExchangeHandler),
+        (r'/exchange',ExchangeHandler),
     ]
     return Application(routes)
 
