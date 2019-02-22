@@ -3,11 +3,13 @@
 # Rudolf Olah
 
 
-import tornado.ioloop
+from tornado.ioloop import IOLoop
 from tornado.web import RequestHandler, Application
 from tornado.websocket import WebSocketHandler
 
-
+from rx import Observable
+from rx.subjects import Subject
+from rx.concurrency import IOLoopScheduler
 
 class MainHandler(RequestHandler):
     def get(self):
@@ -15,18 +17,23 @@ class MainHandler(RequestHandler):
 
 class ExchangeHandler(WebSocketHandler):
     def open(self):
-        pass
+        Server().messages.on_next(['opened',self.request])
 
     def on_message(self, message):
-        pass
+        Server().messages.on_next(['message', message])
 
     def on_close(self):
-        pass
+        Server().messages.on_next(['closed', self.request])
 
 class Server:
     class __Server:
         def __init__(self):
+            scheduler = IOLoopScheduler(IOLoop.current())
             self._app = make_app()
+            self.messages = Subject()
+            only_messages = self.messages.filter(lambda msg: msg[0] == 'message').map(lambda msg : msg[1]).publish()
+            only_messages.subscribe( lambda msg : print(msg))
+            only_messages.connect()
 
         def start(self):
             self._app.listen(8888)
@@ -49,5 +56,7 @@ def make_app():
     return Application(routes)
 
 if __name__ == '__main__':
+    Server().messages.subscribe(lambda msg : print(msg))
     Server().start()
-    tornado.ioloop.IOLoop.current().start()
+
+    IOLoop.current().start()
